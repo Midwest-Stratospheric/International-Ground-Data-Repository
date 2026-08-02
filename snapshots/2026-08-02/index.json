@@ -1,0 +1,40 @@
+{
+  "date": "2026-08-02",
+  "repository": "International-Ground-Data-Repository",
+  "curator": "Midwest Stratospheric Data Systems",
+  "description": "Daily snapshot index of publicly available global upper-air / stratospheric radiosonde data sources",
+  "primary_source": {
+    "name": "NOAA Integrated Global Radiosonde Archive (IGRA) v2.2",
+    "provider": "NOAA NCEI",
+    "stations_historical": ">2800",
+    "stations_updating": "~800-900",
+    "update_frequency": "Daily for recent soundings",
+    "latest_bulk_period_of_record": "1905-04-04 to 2026-07-28",
+    "latest_year_to_date_files": [
+      "IGRA_v2.2_data-y2d_s20260101_e20260728_c20260728.tar",
+      "IGRA_v2.2_data-y2d_s20250101_e20260710_c20260710.tar"
+    ],
+    "access": {
+      "landing_page": "https://www.ncei.noaa.gov/products/weather-balloon/integrated-global-radiosonde-archive",
+      "recent_soundings_https": "https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archive/access/data-y2d/",
+      "period_of_record_https": "https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archive/access/data-por/",
+      "archive_tarballs": "https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archive/archive/",
+      "station_list": "https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archive/doc/igra2-station-list.txt",
+      "readme": "https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archive/doc/igra2-readme.txt"
+    }
+  },
+  "related_sources": [
+    {
+      "name": "NWSTG Global Upper Air BUFR",
+      "update": "Daily",
+      "access": "https://www.ncei.noaa.gov/data/nws-global-upper-air-bufr/"
+    },
+    {
+      "name": "Copernicus CUON",
+      "access": "https://cds.climate.copernicus.eu/datasets/insitu-comprehensive-upper-air-observation-network"
+    }
+  ],
+  "notes": "Full bulk data remains at NCEI. This index provides a stable daily reference point for availability and access methods. Future snapshots may include station activity summaries or sample profiles.",
+  "generated_by": "Midwest Stratospheric Data Systems automated curation",
+  "timestamp_utc": "2026-08-02T19:52:00Z"
+}
