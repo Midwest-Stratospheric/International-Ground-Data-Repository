@@ -1,0 +1,77 @@
+{
+  "date": "2026-08-04",
+  "repository": "International-Ground-Data-Repository",
+  "curator": "Midwest Stratospheric Data Systems",
+  "description": "Daily snapshot index of publicly available global upper-air / stratospheric radiosonde data sources",
+  "primary_source": {
+    "name": "NOAA Integrated Global Radiosonde Archive (IGRA) v2.2",
+    "provider": "NOAA NCEI",
+    "stations_historical": ">2800",
+    "stations_updating": "~800-900",
+    "update_frequency": "Daily for recent soundings; bulk POR and Y2D tarballs typically refreshed daily",
+    "latest_bulk_period_of_record": "1905-04-04 to 2026-08-03",
+    "latest_year_to_date_files": [
+      "IGRA_v2.2_data-y2d_s20260101_e20260803_c20260803.tar",
+      "IGRA_v2.2_data-y2d_s20250101_e20260710_c20260710.tar"
+    ],
+    "latest_por_files": [
+      "IGRA_v2.2_data-por_s19050404_e20260803_c20260803_part1of4.tar",
+      "IGRA_v2.2_data-por_s19050404_e20260803_c20260803_part2of4.tar",
+      "IGRA_v2.2_data-por_s19050404_e20260803_c20260803_part3of4.tar",
+      "IGRA_v2.2_data-por_s19050404_e20260803_c20260803_part4of4.tar"
+    ],
+    "latest_derived_por_files": [
+      "IGRA_v2.2_derived-por_s19430510_e20260803_c20260803_part1of4.tar",
+      "IGRA_v2.2_derived-por_s19430510_e20260803_c20260803_part2of4.tar",
+      "IGRA_v2.2_derived-por_s19430510_e20260803_c20260803_part3of4.tar",
+      "IGRA_v2.2_derived-por_s19430510_e20260803_c20260803_part4of4.tar"
+    ],
+    "monthly_means": {
+      "period_of_record": "1909-04 to 2026-06",
+      "latest_update": "2026-06 (c20260707)"
+    },
+    "access": {
+      "landing_page": "https://www.ncei.noaa.gov/products/weather-balloon/integrated-global-radiosonde-archive",
+      "recent_soundings_https": "https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archive/access/data-y2d/",
+      "period_of_record_https": "https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archive/access/data-por/",
+      "derived_parameters_https": "https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archive/access/derived-por/",
+      "monthly_means_https": "https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archive/access/monthly-por/",
+      "archive_tarballs": "https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archive/archive/",
+      "station_list": "https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archive/doc/igra2-station-list.txt",
+      "readme": "https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archive/doc/igra2-readme.txt",
+      "status": "https://www.ncei.noaa.gov/pub/data/igra/status.txt"
+    }
+  },
+  "related_sources": [
+    {
+      "name": "NWSTG Global Upper Air BUFR",
+      "update": "Daily",
+      "access": "https://www.ncei.noaa.gov/data/nws-global-upper-air-bufr/"
+    },
+    {
+      "name": "ECMWF Global Upper Air BUFR",
+      "update": "Monthly",
+      "access": "https://www.ncei.noaa.gov/data/ecmwf-global-upper-air-bufr/"
+    },
+    {
+      "name": "NWS-Managed Upper Air Observations in BUFR (US/Caribbean/Pacific)",
+      "access": "https://www.ncei.noaa.gov/data/us-radiosonde-bufr/"
+    },
+    {
+      "name": "Copernicus CUON",
+      "access": "https://cds.climate.copernicus.eu/datasets/insitu-comprehensive-upper-air-observation-network"
+    },
+    {
+      "name": "RATPAC (Radiosonde Atmospheric Temperature Products for Assessing Climate)",
+      "access": "https://www.ncei.noaa.gov/products/weather-balloon/radiosonde-atmospheric-temperature-products"
+    }
+  ],
+  "network_notes": [
+    "IGRA v2.2 continues daily updates incorporating TAC + BUFR sources for ~800–900 active stations.",
+    "NCEI systems had scheduled maintenance on 2026-08-03 15:30–17:30 ET; bulk archives show successful refresh through 2026-08-03.",
+    "No global outage affecting bulk IGRA availability observed as of this snapshot."
+  ],
+  "notes": "Full bulk multi-GB tarballs remain at NCEI; this index is a lightweight daily reference for availability, periods of record, and access links only. Do not download the large archives into this repository.",
+  "generated_by": "Midwest Stratospheric Data Systems automated curation",
+  "timestamp_utc": "2026-08-04T11:50:00Z"
+}
