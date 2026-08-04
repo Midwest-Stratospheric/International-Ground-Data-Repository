@@ -9,22 +9,23 @@
     "stations_historical": ">2800",
     "stations_updating": "~800-900",
     "update_frequency": "Daily for recent soundings; bulk POR and Y2D tarballs typically refreshed daily",
-    "latest_bulk_period_of_record": "1905-04-04 to 2026-08-03",
+    "latest_bulk_period_of_record": "1905-04-04 to 2026-08-02",
     "latest_year_to_date_files": [
-      "IGRA_v2.2_data-y2d_s20260101_e20260803_c20260803.tar",
-      "IGRA_v2.2_data-y2d_s20250101_e20260710_c20260710.tar"
+      "IGRA_v2.2_data-y2d_s20260101_e20260802_c20260802.tar",
+      "IGRA_v2.2_data-y2d_s20250101_e20260710_c20260710.tar",
+      "IGRA_v2.2_data-y2d_s20210101_e20250615_c20250615.tar"
     ],
     "latest_por_files": [
-      "IGRA_v2.2_data-por_s19050404_e20260803_c20260803_part1of4.tar",
-      "IGRA_v2.2_data-por_s19050404_e20260803_c20260803_part2of4.tar",
-      "IGRA_v2.2_data-por_s19050404_e20260803_c20260803_part3of4.tar",
-      "IGRA_v2.2_data-por_s19050404_e20260803_c20260803_part4of4.tar"
+      "IGRA_v2.2_data-por_s19050404_e20260802_c20260802_part1of4.tar",
+      "IGRA_v2.2_data-por_s19050404_e20260802_c20260802_part2of4.tar",
+      "IGRA_v2.2_data-por_s19050404_e20260802_c20260802_part3of4.tar",
+      "IGRA_v2.2_data-por_s19050404_e20260802_c20260802_part4of4.tar"
     ],
     "latest_derived_por_files": [
-      "IGRA_v2.2_derived-por_s19430510_e20260803_c20260803_part1of4.tar",
-      "IGRA_v2.2_derived-por_s19430510_e20260803_c20260803_part2of4.tar",
-      "IGRA_v2.2_derived-por_s19430510_e20260803_c20260803_part3of4.tar",
-      "IGRA_v2.2_derived-por_s19430510_e20260803_c20260803_part4of4.tar"
+      "IGRA_v2.2_derived-por_s19430510_e20260802_c20260802_part1of4.tar",
+      "IGRA_v2.2_derived-por_s19430510_e20260802_c20260802_part2of4.tar",
+      "IGRA_v2.2_derived-por_s19430510_e20260802_c20260802_part3of4.tar",
+      "IGRA_v2.2_derived-por_s19430510_e20260802_c20260802_part4of4.tar"
     ],
     "monthly_means": {
       "period_of_record": "1909-04 to 2026-06",
@@ -68,10 +69,12 @@
   ],
   "network_notes": [
     "IGRA v2.2 continues daily updates incorporating TAC + BUFR sources for ~800–900 active stations.",
-    "NCEI systems had scheduled maintenance on 2026-08-03 15:30–17:30 ET; bulk archives show successful refresh through 2026-08-03.",
-    "No global outage affecting bulk IGRA availability observed as of this snapshot."
+    "Bulk archive tarballs on NCEI last refreshed 2026-08-03 (data through 2026-08-02). Individual station Y2D files in access/data-y2d/ show updates as recent as 2026-08-02.",
+    "No active NCEI system outage affecting IGRA bulk availability as of this snapshot. Prior scheduled maintenance window on 2026-08-03 15:30–17:30 ET completed without lasting impact on archives.",
+    "U.S. NWS upper-air network: residual effects from 2025–2026 staffing and hydrogen shortages persist at some sites (e.g., prolonged Northern California launch interruptions earlier in summer). Recent mid-to-late July 2026 archive counts showed short-term recovery signals above historical baselines in 7- and 14-day windows, though longer (30+ day) CONUS windows remained below baseline in independent analyses. Launch timing deviations from strict WMO 00Z/12Z synoptic times continue at a subset of stations.",
+    "No global outage of the IGRA product itself observed."
   ],
   "notes": "Full bulk multi-GB tarballs remain at NCEI; this index is a lightweight daily reference for availability, periods of record, and access links only. Do not download the large archives into this repository.",
   "generated_by": "Midwest Stratospheric Data Systems automated curation",
-  "timestamp_utc": "2026-08-04T11:50:00Z"
+  "timestamp_utc": "2026-08-04T15:05:00Z"
 }
