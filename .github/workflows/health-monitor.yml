@@ -1,0 +1,272 @@
+name: IGDR Health Monitor
+
+on:
+  schedule:
+    - cron: "0 12 * * *"
+    - cron: "0 18 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: igdr-health
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  actions: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Evaluate snapshot freshness
+        id: check
+        run: |
+          set -e
+          python3 <<'PY'
+          import json, os
+          from datetime import datetime, timezone, timedelta
+          from pathlib import Path
+
+          now = datetime.now(timezone.utc)
+          today = now.strftime("%Y-%m-%d")
+          yesterday = (now - timedelta(days=1)).strftime("%Y-%m-%d")
+
+          def load_index(d):
+              p = Path(f"snapshots/{d}/index.json")
+              if not p.exists():
+                  return None
+              try:
+                  return json.loads(p.read_text())
+              except Exception:
+                  return False
+
+          today_doc = load_index(today)
+          yest_doc = load_index(yesterday)
+
+          # Prefer today; accept yesterday if before ~12 UTC (pipeline lag)
+          doc = today_doc
+          used = today
+          if doc is None and now.hour < 12:
+              doc = yest_doc
+              used = yesterday
+
+          status = "ok"
+          reasons = []
+          if doc is None:
+              status = "missing"
+              reasons.append(f"no snapshots/{today}/index.json (and no acceptable yesterday)")
+          elif doc is False:
+              status = "invalid_json"
+              reasons.append("index.json is not valid JSON")
+          else:
+              # Age check on timestamp_utc or date
+              ts = doc.get("timestamp_utc") or doc.get("date")
+              age_h = None
+              if ts:
+                  try:
+                      if len(str(ts)) == 10:
+                          t = datetime.fromisoformat(str(ts) + "T12:00:00+00:00")
+                      else:
+                          t = datetime.fromisoformat(str(ts).replace("Z", "+00:00"))
+                      age_h = (now - t).total_seconds() / 3600.0
+                  except Exception:
+                      pass
+              if age_h is not None and age_h > 40:
+                  status = "stale"
+                  reasons.append(f"age {age_h:.1f}h > 40h")
+              if isinstance(doc, dict) and doc.get("ok") is False:
+                  status = "source_fail"
+                  reasons.append("snapshot reports ok=false")
+
+          critical = status in ("missing", "invalid_json", "stale", "source_fail")
+
+          report = {
+              "schema": "igdr.health_report.v1",
+              "date_utc": today,
+              "generated_at_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+              "ok": not critical,
+              "critical_fail": critical,
+              "status": status,
+              "reasons": reasons,
+              "checked_snapshot": used if doc not in (None, False) else None,
+              "redispatch_workflow": "daily-snapshot.yml",
+              "alert_pr_branch": "ops/igdr-health-alert",
+              "curator": "Midwest Stratospheric Data Systems",
+          }
+
+          Path("status").mkdir(exist_ok=True)
+          Path("status/health.json").write_text(json.dumps(report, indent=2) + "\n")
+          Path("/tmp/health_report.json").write_text(json.dumps(report, indent=2))
+
+          lines = [
+              f"# IGDR Health Alert — {today}",
+              "",
+              f"Generated: `{report['generated_at_utc']}`",
+              f"Critical failure: **{critical}**",
+              f"Status: `{status}`",
+              "",
+              "## Reasons",
+          ]
+          if reasons:
+              lines += [f"- {r}" for r in reasons]
+          else:
+              lines.append("_none_")
+          lines += [
+              "",
+              "## Recovery",
+              "",
+              "This PR is opened automatically when the daily IGDR snapshot is missing or stale.",
+              "It is **closed automatically** when Health Monitor reports recovery.",
+              "",
+              "1. Re-run **Daily IGDR Snapshot** (workflow_dispatch)",
+              "2. Re-run **IGDR Health Monitor**",
+              "",
+          ]
+          Path("/tmp/HEALTH_ALERT.md").write_text("\n".join(lines) + "\n")
+
+          print(json.dumps(report, indent=2))
+          if critical:
+              print("CRITICAL=true")
+              open("/tmp/critical", "w").write("true")
+          else:
+              print("CRITICAL=false")
+              open("/tmp/critical", "w").write("false")
+          PY
+          if [ "$(cat /tmp/critical)" = "true" ]; then
+            echo "critical=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "critical=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit health status on main
+        run: |
+          set -e
+          git config user.name "igdr-bot"
+          git config user.email "bot@midwestsds.com"
+          git add status/health.json || true
+          if git diff --staged --quiet; then
+            echo "No health status change"
+            exit 0
+          fi
+          git commit -m "ops(health): IGDR health report $(date -u +%Y-%m-%dT%H:%MZ)"
+          for i in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort || true; git pull --rebase origin main || true; }
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((i * 3))
+          done
+          exit 1
+
+      - name: Re-dispatch Daily IGDR Snapshot if unhealthy
+        if: steps.check.outputs.critical == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          echo "Dispatching daily-snapshot.yml"
+          curl -sS -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/daily-snapshot.yml/dispatches" \
+            -d '{"ref":"main"}' || echo "dispatch failed"
+
+      - name: Open or update health alert PR
+        if: steps.check.outputs.critical == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          git config user.name "igdr-bot"
+          git config user.email "bot@midwestsds.com"
+          BRANCH="ops/igdr-health-alert"
+          git fetch origin main
+          git checkout -B "$BRANCH" origin/main
+
+          mkdir -p ops
+          cp /tmp/HEALTH_ALERT.md ops/HEALTH_ALERT.md
+          cp /tmp/health_report.json ops/health-report.json
+
+          git add ops/HEALTH_ALERT.md ops/health-report.json
+          if ! git diff --staged --quiet; then
+            git commit -m "ops(health-alert): log critical IGDR health failure $(date -u +%Y-%m-%dT%H:%MZ)"
+          fi
+          git push -u origin "$BRANCH" --force
+
+          PR_JSON=$(curl -sS -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls?state=open&head=${{ github.repository_owner }}:${BRANCH}")
+
+          PR_NUMBER=$(python3 -c "import json,sys; d=json.load(sys.stdin); print(d[0]['number'] if d else '')" <<< "$PR_JSON")
+          BODY=$(cat /tmp/HEALTH_ALERT.md)
+
+          if [ -n "$PR_NUMBER" ]; then
+            echo "Updating PR #$PR_NUMBER"
+            curl -sS -X POST \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/repos/${{ github.repository }}/issues/${PR_NUMBER}/comments" \
+              -d "$(python3 -c "import json,sys; print(json.dumps({'body': sys.stdin.read()}))" <<< "$BODY")"
+          else
+            echo "Creating health alert PR"
+            curl -sS -X POST \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/repos/${{ github.repository }}/pulls" \
+              -d "$(python3 <<'PY'
+          import json
+          body = open('/tmp/HEALTH_ALERT.md').read()
+          print(json.dumps({
+            'title': 'IGDR health alert — daily snapshot missing or stale',
+            'head': 'ops/igdr-health-alert',
+            'base': 'main',
+            'body': body + '\n\n---\n_Automated alert PR. Closed automatically when the daily snapshot is healthy again._',
+            'maintainer_can_modify': True,
+          }))
+          PY
+          )"
+          fi
+
+      - name: Clear health alert PR when recovered
+        if: steps.check.outputs.critical != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          BRANCH="ops/igdr-health-alert"
+          PR_JSON=$(curl -sS -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls?state=open&head=${{ github.repository_owner }}:${BRANCH}")
+
+          PR_NUMBER=$(python3 -c "import json,sys; d=json.load(sys.stdin); print(d[0]['number'] if d else '')" <<< "$PR_JSON")
+          if [ -z "$PR_NUMBER" ]; then
+            echo "No open health alert PR"
+            exit 0
+          fi
+
+          MSG="## Recovered\n\nIGDR Health Monitor reports **no critical failures** at $(date -u +%Y-%m-%dT%H:%MZ).\n\nClosing this alert PR automatically. See \`status/health.json\` on main."
+          curl -sS -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${{ github.repository }}/issues/${PR_NUMBER}/comments" \
+            -d "$(python3 -c "import json,sys; print(json.dumps({'body': sys.stdin.read()}))" <<< "$MSG")"
+
+          curl -sS -X PATCH \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls/${PR_NUMBER}" \
+            -d '{"state":"closed"}'
+
+          echo "Closed health alert PR #$PR_NUMBER"
