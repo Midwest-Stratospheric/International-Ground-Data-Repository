@@ -1,0 +1,55 @@
+name: Daily IGDR Snapshot
+
+on:
+  schedule:
+    # ~05:30 UTC — after typical NCEI overnight refreshes
+    - cron: "30 5 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: igdr-daily-snapshot
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch and write daily IGDR index
+        run: python scripts/fetch_igdr_snapshot.py
+
+      - name: Commit and push
+        run: |
+          set -e
+          git config user.name "igdr-bot"
+          git config user.email "bot@midwestsds.com"
+          git add snapshots status || true
+          if git diff --staged --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          DATE=$(python3 -c "import json; print(json.load(open('status/last_snapshot.json')).get('date','unknown'))" 2>/dev/null || date -u +%Y-%m-%d)
+          git commit -m "Daily IGDR snapshot for ${DATE}"
+          for i in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort || true; git pull --rebase origin main || true; }
+            if git push origin HEAD:main; then
+              echo "Pushed OK"
+              exit 0
+            fi
+            sleep $((i * 3))
+          done
+          echo "Push failed after retries"
+          exit 1
