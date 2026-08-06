@@ -19,10 +19,10 @@
       "IGRA_v2.2_data-por_s19050404_e20260805_c20260805_part4of4.tar"
     ],
     "latest_derived_por_files": [
-      "IGRA_v2.2_derived-por_s19430510_e20260804_c20260804_part1of4.tar",
-      "IGRA_v2.2_derived-por_s19430510_e20260804_c20260804_part2of4.tar",
-      "IGRA_v2.2_derived-por_s19430510_e20260804_c20260804_part3of4.tar",
-      "IGRA_v2.2_derived-por_s19430510_e20260804_c20260804_part4of4.tar"
+      "IGRA_v2.2_derived-por_s19430510_e20260805_c20260805_part1of4.tar",
+      "IGRA_v2.2_derived-por_s19430510_e20260805_c20260805_part2of4.tar",
+      "IGRA_v2.2_derived-por_s19430510_e20260805_c20260805_part3of4.tar",
+      "IGRA_v2.2_derived-por_s19430510_e20260805_c20260805_part4of4.tar"
     ],
     "access": {
       "landing_page": "https://www.ncei.noaa.gov/products/weather-balloon/integrated-global-radiosonde-archive",
@@ -69,6 +69,6 @@
   ],
   "notes": "Full bulk multi-GB tarballs remain at NCEI; this index is a lightweight daily reference for availability, periods of record, and access links only. Do not download the large archives into this repository.",
   "generated_by": "Midwest Stratospheric Data Systems automated curation",
-  "timestamp_utc": "2026-08-06T11:50:24Z",
+  "timestamp_utc": "2026-08-06T12:28:56Z",
   "ok": true
 }
