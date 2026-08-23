@@ -10,24 +10,24 @@
     "stations_listed": 2932,
     "stations_updating": "~800-900",
     "update_frequency": "Daily for recent soundings; bulk POR and Y2D tarballs typically refreshed daily",
-    "latest_bulk_period_of_record": "1905-04-04 to 2026-08-21",
-    "latest_bulk_period_of_record_end": "2026-08-21",
+    "latest_bulk_period_of_record": "1905-04-04 to 2026-08-22",
+    "latest_bulk_period_of_record_end": "2026-08-22",
     "latest_year_to_date_files": [
-      "IGRA_v2.2_data-y2d_s20260101_e20260821_c20260821.tar",
+      "IGRA_v2.2_data-y2d_s20260101_e20260822_c20260822.tar",
       "IGRA_v2.2_data-y2d_s20250101_e20260710_c20260710.tar",
       "IGRA_v2.2_data-y2d_s20210101_e20250615_c20250615.tar"
     ],
     "latest_por_files": [
-      "IGRA_v2.2_data-por_s19050404_e20260821_c20260821_part1of4.tar",
-      "IGRA_v2.2_data-por_s19050404_e20260821_c20260821_part2of4.tar",
-      "IGRA_v2.2_data-por_s19050404_e20260821_c20260821_part3of4.tar",
-      "IGRA_v2.2_data-por_s19050404_e20260821_c20260821_part4of4.tar"
+      "IGRA_v2.2_data-por_s19050404_e20260822_c20260822_part1of4.tar",
+      "IGRA_v2.2_data-por_s19050404_e20260822_c20260822_part2of4.tar",
+      "IGRA_v2.2_data-por_s19050404_e20260822_c20260822_part3of4.tar",
+      "IGRA_v2.2_data-por_s19050404_e20260822_c20260822_part4of4.tar"
     ],
     "latest_derived_por_files": [
-      "IGRA_v2.2_derived-por_s19430510_e20260821_c20260821_part1of4.tar",
-      "IGRA_v2.2_derived-por_s19430510_e20260821_c20260821_part2of4.tar",
-      "IGRA_v2.2_derived-por_s19430510_e20260821_c20260821_part3of4.tar",
-      "IGRA_v2.2_derived-por_s19430510_e20260821_c20260821_part4of4.tar"
+      "IGRA_v2.2_derived-por_s19430510_e20260822_c20260822_part1of4.tar",
+      "IGRA_v2.2_derived-por_s19430510_e20260822_c20260822_part2of4.tar",
+      "IGRA_v2.2_derived-por_s19430510_e20260822_c20260822_part3of4.tar",
+      "IGRA_v2.2_derived-por_s19430510_e20260822_c20260822_part4of4.tar"
     ],
     "monthly_means": {
       "period_of_record": "1909-04 to 2026-07",
@@ -71,7 +71,7 @@
   ],
   "network_notes": [
     "IGRA v2.2 continues daily updates incorporating TAC + BUFR sources for ~800–900 active stations.",
-    "Bulk archive tarballs on NCEI last refreshed 2026-08-22 ~07:15–07:23 UTC (data through 2026-08-21, creation stamp c20260821). No newer bulk files observed as of 2026-08-23 snapshot.",
+    "Bulk archive tarballs on NCEI last refreshed 2026-08-23 ~07:15–07:23 UTC (data through 2026-08-22, creation stamp c20260822). Updated from previous 2026-08-21 end date.",
     "Monthly means POR and update files remain through end of 2026-07 (c20260806).",
     "NCEI is currently moving data and applications to the cloud; temporary access delays possible.",
     "NCEI status file last substantive update remains September 04, 2025 (OSCAR metadata as primary source).",
@@ -81,6 +81,6 @@
   ],
   "notes": "Full bulk multi-GB tarballs remain at NCEI; this index is a lightweight daily reference for availability, periods of record, and access links only. Do not download the large archives into this repository. Data attribution: NOAA National Centers for Environmental Information (NCEI) Integrated Global Radiosonde Archive (IGRA) v2.2.",
   "generated_by": "Midwest Stratospheric Data Systems automated curation",
-  "timestamp_utc": "2026-08-23T11:05:00Z",
+  "timestamp_utc": "2026-08-23T18:35:00Z",
   "ok": true
 }
