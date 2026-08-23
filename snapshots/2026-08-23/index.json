@@ -10,8 +10,13 @@
     "stations_listed": 2932,
     "stations_updating": "~800-900",
     "update_frequency": "Daily for recent soundings; bulk POR and Y2D tarballs typically refreshed daily",
+    "latest_bulk_period_of_record": "1905-04-04 to 2026-08-21",
     "latest_bulk_period_of_record_end": "2026-08-21",
-    "latest_year_to_date_files": [],
+    "latest_year_to_date_files": [
+      "IGRA_v2.2_data-y2d_s20260101_e20260821_c20260821.tar",
+      "IGRA_v2.2_data-y2d_s20250101_e20260710_c20260710.tar",
+      "IGRA_v2.2_data-y2d_s20210101_e20250615_c20250615.tar"
+    ],
     "latest_por_files": [
       "IGRA_v2.2_data-por_s19050404_e20260821_c20260821_part1of4.tar",
       "IGRA_v2.2_data-por_s19050404_e20260821_c20260821_part2of4.tar",
@@ -24,6 +29,10 @@
       "IGRA_v2.2_derived-por_s19430510_e20260821_c20260821_part3of4.tar",
       "IGRA_v2.2_derived-por_s19430510_e20260821_c20260821_part4of4.tar"
     ],
+    "monthly_means": {
+      "period_of_record": "1909-04 to 2026-07",
+      "latest_update": "2026-07 (c20260806)"
+    },
     "access": {
       "landing_page": "https://www.ncei.noaa.gov/products/weather-balloon/integrated-global-radiosonde-archive",
       "recent_soundings_https": "https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archive/access/data-y2d/",
@@ -62,13 +71,16 @@
   ],
   "network_notes": [
     "IGRA v2.2 continues daily updates incorporating TAC + BUFR sources for ~800–900 active stations.",
+    "Bulk archive tarballs on NCEI last refreshed 2026-08-22 ~07:15–07:23 UTC (data through 2026-08-21, creation stamp c20260821). No newer bulk files observed as of 2026-08-23 snapshot.",
+    "Monthly means POR and update files remain through end of 2026-07 (c20260806).",
+    "NCEI is currently moving data and applications to the cloud; temporary access delays possible.",
+    "NCEI status file last substantive update remains September 04, 2025 (OSCAR metadata as primary source).",
     "Station list parse counted 2932 entries from the public igra2-station-list.txt.",
     "Full bulk multi-GB tarballs remain at NCEI; this index is a lightweight daily reference only.",
-    "No bulk archives are downloaded into this repository.",
-    "NCEI status excerpt: Status of the Integrated Global Radiosonde Archive (Additional information on IGRA is available at https://www.ncei.noaa.gov/products/weather-balloon/integrated-global-radiosonde-archive) September 04, 2025, OSCAR metadata source has been implemented: The OSCAR metadata source has been implemented in IGRA v2.2. This is now the primary metadata source since the WMO Pub 9 is no longer being updated."
+    "No bulk archives are downloaded into this repository."
   ],
-  "notes": "Full bulk multi-GB tarballs remain at NCEI; this index is a lightweight daily reference for availability, periods of record, and access links only. Do not download the large archives into this repository.",
+  "notes": "Full bulk multi-GB tarballs remain at NCEI; this index is a lightweight daily reference for availability, periods of record, and access links only. Do not download the large archives into this repository. Data attribution: NOAA National Centers for Environmental Information (NCEI) Integrated Global Radiosonde Archive (IGRA) v2.2.",
   "generated_by": "Midwest Stratospheric Data Systems automated curation",
-  "timestamp_utc": "2026-08-23T07:21:34Z",
+  "timestamp_utc": "2026-08-23T11:05:00Z",
   "ok": true
 }
