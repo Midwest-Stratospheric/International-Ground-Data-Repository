@@ -11,9 +11,7 @@
     "stations_updating": "~800-900",
     "update_frequency": "Daily for recent soundings; bulk POR and Y2D tarballs typically refreshed daily",
     "latest_bulk_period_of_record_end": "2026-08-28",
-    "latest_year_to_date_files": [
-      "IGRA_v2.2_data-y2d_s20260101_e20260828_c20260828.tar"
-    ],
+    "latest_year_to_date_files": [],
     "latest_por_files": [
       "IGRA_v2.2_data-por_s19050404_e20260828_c20260828_part1of4.tar",
       "IGRA_v2.2_data-por_s19050404_e20260828_c20260828_part2of4.tar",
@@ -69,8 +67,8 @@
     "No bulk archives are downloaded into this repository.",
     "NCEI status excerpt: Status of the Integrated Global Radiosonde Archive (Additional information on IGRA is available at https://www.ncei.noaa.gov/products/weather-balloon/integrated-global-radiosonde-archive) September 04, 2025, OSCAR metadata source has been implemented: The OSCAR metadata source has been implemented in IGRA v2.2. This is now the primary metadata source since the WMO Pub 9 is no longer being updated."
   ],
-  "notes": "Full bulk multi-GB tarballs remain at NCEI; this index is a lightweight daily reference for availability, periods of record, and access links only. Do not download the large archives into this repository. Attribution: Data from NOAA National Centers for Environmental Information (NCEI) Integrated Global Radiosonde Archive (IGRA).",
+  "notes": "Full bulk multi-GB tarballs remain at NCEI; this index is a lightweight daily reference for availability, periods of record, and access links only. Do not download the large archives into this repository.",
   "generated_by": "Midwest Stratospheric Data Systems automated curation",
-  "timestamp_utc": "2026-08-29T11:09:00Z",
+  "timestamp_utc": "2026-08-30T05:37:07Z",
   "ok": true
 }
