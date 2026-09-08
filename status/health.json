@@ -1,7 +1,7 @@
 {
   "schema": "igdr.health_report.v1",
   "date_utc": "2026-09-08",
-  "generated_at_utc": "2026-09-08T16:24:39Z",
+  "generated_at_utc": "2026-09-08T20:53:47Z",
   "ok": true,
   "critical_fail": false,
   "status": "ok",
