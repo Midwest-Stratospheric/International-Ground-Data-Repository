@@ -1,0 +1,17 @@
+{
+  "id": "MSDS-GMC800-CASEY",
+  "title": "Casey, Illinois fixed GMC-800 radiation / weather station",
+  "station_type": "fixed_weather_and_radiation",
+  "lat": 39.2974,
+  "lon": -87.9818,
+  "latitude": "39.2974 N",
+  "longitude": "87.9818 W",
+  "timezone": "America/Chicago",
+  "instrument": "GQ Electronics GMC-800",
+  "operator": "Aerostratospheric / Midwest Stratospheric Data Systems",
+  "status": "active",
+  "variables": ["cpm", "usv_h"],
+  "location_mode": "fixed",
+  "uogw_path": "layers/ground/casey/gmc-800/",
+  "first_ingest": "2026-09-16"
+}

@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-16",
+  "station_id": "MSDS-GMC800-CASEY",
+  "lat": 39.2974,
+  "lon": -87.9818,
+  "window_start_local": "2026-09-15T12:40:00",
+  "window_end_local": "2026-09-16T09:40:00",
+  "window_hours": 21,
+  "observation_count": 1233,
+  "stats": {
+    "cpm": {"mean": 15.1249, "min": 5.0, "max": 34.0, "median": 15.0, "n": 1233},
+    "usv_h": {"mean": 0.0982, "min": 0.032, "max": 0.221, "median": 0.097, "n": 1233}
+  },
+  "source": {
+    "export_csv": "20260916_09_40_54.csv",
+    "software": "GMC Data Viewer 2.75"
+  },
+  "canonical": "https://raw.githubusercontent.com/Midwest-Stratospheric/Unified-Open-Global-Weather/main/layers/ground/casey/gmc-800/latest.json"
+}
