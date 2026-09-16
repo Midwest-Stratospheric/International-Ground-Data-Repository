@@ -5,11 +5,27 @@ GitHub: [Midwest-Stratospheric](https://github.com/Midwest-Stratospheric)
 
 ## Purpose
 
-The International Ground Data Repository (IGDR) is a living, open archive that aggregates and organizes publicly available stratospheric, upper-air, and ground-based atmospheric weather data from sources around the world. 
+The International Ground Data Repository (IGDR) is a living, open archive that aggregates and organizes publicly available stratospheric, upper-air, and ground-based atmospheric weather data from sources around the world — plus first-party **Casey, Illinois surface radiation** from the Aerostratospheric GMC-800.
 
-Over time, this repository will grow into a comprehensive, versioned collection of public datasets to support research, education, citizen science, and open atmospheric monitoring. It complements the flight data released by Midwest Stratospheric Data Systems (MSDS) in the [msds-data](https://github.com/Midwest-Stratospheric/msds-data) repository.
+Over time, this repository will grow into a comprehensive, versioned collection of public datasets to support research, education, citizen science, and open atmospheric monitoring. It complements the flight data released by Midwest Stratospheric Data Systems (MSDS) in the [msds-data](https://github.com/Midwest-Stratospheric/msds-data) repository and the UOGW ground layer.
 
-All data here is sourced from public domain or openly licensed government and research archives. We do not claim ownership of the original observations — we curate, index, snapshot, and make them more discoverable and persistent.
+All third-party data here is sourced from public domain or openly licensed government and research archives. We do not claim ownership of the original observations — we curate, index, snapshot, and make them more discoverable and persistent. First-party GMC-800 files are MSDS/Aerostratospheric observations of ionizing radiation at a fixed station.
+
+## Radiation data (first-party)
+
+Casey, Illinois hosts a **fixed GQ GMC-800** Geiger–Müller counter used as a surface radiation / weather station.
+
+| Field | Value |
+|-------|-------|
+| Station id | `MSDS-GMC800-CASEY` |
+| Latitude | 39.2974 N |
+| Longitude | 87.9818 W (−87.9818) |
+| Variables | CPM, µSv/h |
+| Station file | [`stations/msds-gmc800-casey.json`](./stations/msds-gmc800-casey.json) |
+| Latest snapshot | [`snapshots/2026-09-16/gmc-800-casey.json`](./snapshots/2026-09-16/gmc-800-casey.json) |
+| Canonical hourly package | [UOGW `layers/ground/casey/gmc-800/latest.json`](https://github.com/Midwest-Stratospheric/Unified-Open-Global-Weather/blob/main/layers/ground/casey/gmc-800/latest.json) |
+
+This is **background ionizing radiation** (beta / gamma / X-ray indication from the GMC-800), time-stamped and locked to the coordinates above. It is a research series, not a regulatory or emergency-alert product.
 
 ## Core Data Sources
 
@@ -24,6 +40,9 @@ All data here is sourced from public domain or openly licensed government and re
 - **Copernicus / ECMWF Comprehensive Upper-air Observation Network (CUON)**  
   Merged historical balloon observations.
 
+- **Aerostratospheric / MSDS Casey GMC-800**  
+  First-party fixed-site surface radiation (CPM, µSv/h) at 39.2974 N, −87.9818 W.
+
 - **Other open sources**  
   QBO tropical stratospheric winds, ozone sonde networks, satellite-derived stratospheric products (SWOOSH, etc.), and regional meteorological agency open data where available.
 
@@ -35,7 +54,7 @@ All data here is sourced from public domain or openly licensed government and re
 ├── sources/                  # Documentation of data sources and access methods
 ├── snapshots/                # Daily or periodic curated snapshots / indexes
 │   └── YYYY-MM-DD/
-├── stations/                 # Station metadata and sample profiles
+├── stations/                 # Station metadata (includes msds-gmc800-casey.json)
 ├── indexes/                  # Machine-readable catalogs of available data
 └── docs/                     # Guides, citation information, methodology
 ```
@@ -47,10 +66,11 @@ This repository is designed to receive automated daily contributions that:
 - Maintain indexes of available global stations and latest observations
 - Preserve historical snapshots for long-term accessibility
 - Link back to authoritative sources for full bulk downloads
+- Ingest first-party Casey GMC-800 radiation history when a new Data Viewer export is curated
 
 ## Citation & License
 
-When using data from this repository, always cite the original data providers (primarily NOAA NCEI IGRA and related programs) in addition to acknowledging Midwest Stratospheric Data Systems as the curator of this open archive.
+When using data from this repository, always cite the original data providers (primarily NOAA NCEI IGRA and related programs) in addition to acknowledging Midwest Stratospheric Data Systems as the curator of this open archive. For GMC-800 files, cite Aerostratospheric / MSDS and GQ Electronics as the instrument maker.
 
 IGRA citation example:  
 Durre, Imke; Yin, Xungang; Vose, Russell S.; Applequist, Scott; Arnfield, Jeff; Korzeniewski, Bryant; Hundermark, Bruce. (2016) Integrated Global Radiosonde Archive (IGRA), Version 2. NOAA National Centers for Environmental Information. DOI:10.7289/V5X63K0Q.
