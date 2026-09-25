@@ -77,6 +77,10 @@ Durre, Imke; Yin, Xungang; Vose, Russell S.; Applequist, Scott; Arnfield, Jeff; 
 
 Repository content (indexes, documentation, curated snapshots) is released under Creative Commons Attribution 4.0 International (CC BY 4.0) unless otherwise noted.
 
+## Collaboration
+
+IGDR feeds the ground layer of UOGW and the radiation panel on xDataHub, our public open atmospheric data dashboard: https://www.midwestsds.com/msds-data-hub.html. Station operators and researchers who want to pair their own ground or radiation series with ours, or help check these snapshots, are welcome to reach out about data collaboration: email space@aerostratospheric.com or book a 15 minute intro at https://calendly.com/aerostratospheric/15min
+
 ## Contact
 
 Midwest Stratospheric Data Systems  
