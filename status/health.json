@@ -1,12 +1,12 @@
 {
   "schema": "igdr.health_report.v1",
-  "date_utc": "2026-10-05",
-  "generated_at_utc": "2026-10-05T23:52:41Z",
+  "date_utc": "2026-10-06",
+  "generated_at_utc": "2026-10-06T18:10:42Z",
   "ok": true,
   "critical_fail": false,
   "status": "ok",
   "reasons": [],
-  "checked_snapshot": "2026-10-05",
+  "checked_snapshot": "2026-10-06",
   "redispatch_workflow": "daily-snapshot.yml",
   "alert_pr_branch": "ops/igdr-health-alert",
   "curator": "Midwest Stratospheric Data Systems"
