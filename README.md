@@ -3,6 +3,12 @@
 **Maintained by [Midwest Stratospheric Data Systems](https://www.midwestsds.com)**  
 GitHub: [Midwest-Stratospheric](https://github.com/Midwest-Stratospheric)
 
+## Operation Canis Major
+
+<img src="https://www.midwestsds.com/images/operation-canis-major-patch.png" alt="Operation Canis Major patch" width="120" align="right">
+
+This project is part of [Operation Canis Major](https://www.midwestsds.com/operation-canis-major.html), often called Project Canis: Aerostratospheric's mission objective to provide open stratospheric and atmospheric research and data, unrestricted, to the public. Learn more: https://www.midwestsds.com/operation-canis-major.html
+
 ## Purpose
 
 The International Ground Data Repository (IGDR) is a living, open archive that aggregates and organizes publicly available stratospheric, upper-air, and ground-based atmospheric weather data from sources around the world — plus first-party **Casey, Illinois surface radiation** from the Aerostratospheric GMC-800.
