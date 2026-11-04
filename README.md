@@ -1,6 +1,6 @@
 # International Ground Data Repository (IGDR)
 
-**Maintained by [Midwest Stratospheric Data Systems](https://www.midwestsds.com)**  
+**Maintained by [Aerostratospheric](https://www.midwestsds.com)**  
 GitHub: [Midwest-Stratospheric](https://github.com/Midwest-Stratospheric)
 
 ## Operation Canis Major
@@ -13,9 +13,9 @@ This project is part of [Operation Canis Major](https://www.midwestsds.com/opera
 
 The International Ground Data Repository (IGDR) is a living, open archive that aggregates and organizes publicly available stratospheric, upper-air, and ground-based atmospheric weather data from sources around the world — plus first-party **Casey, Illinois surface radiation** from the Aerostratospheric GMC-800.
 
-Over time, this repository will grow into a comprehensive, versioned collection of public datasets to support research, education, citizen science, and open atmospheric monitoring. It complements the flight data released by Midwest Stratospheric Data Systems (MSDS) in the [msds-data](https://github.com/Midwest-Stratospheric/msds-data) repository and the UOGW ground layer.
+Over time, this repository will grow into a comprehensive, versioned collection of public datasets to support research, education, citizen science, and open atmospheric monitoring. It complements the flight data released by Aerostratospheric in the [msds-data](https://github.com/Midwest-Stratospheric/msds-data) repository and the UOGW ground layer.
 
-All third-party data here is sourced from public domain or openly licensed government and research archives. We do not claim ownership of the original observations — we curate, index, snapshot, and make them more discoverable and persistent. First-party GMC-800 files are MSDS/Aerostratospheric observations of ionizing radiation at a fixed station.
+All third-party data here is sourced from public domain or openly licensed government and research archives. We do not claim ownership of the original observations — we curate, index, snapshot, and make them more discoverable and persistent. First-party GMC-800 files are Aerostratospheric/Aerostratospheric observations of ionizing radiation at a fixed station.
 
 ## Radiation data (first-party)
 
@@ -46,7 +46,7 @@ This is **background ionizing radiation** (beta / gamma / X-ray indication from 
 - **Copernicus / ECMWF Comprehensive Upper-air Observation Network (CUON)**  
   Merged historical balloon observations.
 
-- **Aerostratospheric / MSDS Casey GMC-800**  
+- **Aerostratospheric Casey GMC-800**  
   First-party fixed-site surface radiation (CPM, µSv/h) at 39.2974 N, −87.9818 W.
 
 - **Other open sources**  
@@ -76,7 +76,7 @@ This repository is designed to receive automated daily contributions that:
 
 ## Citation & License
 
-When using data from this repository, always cite the original data providers (primarily NOAA NCEI IGRA and related programs) in addition to acknowledging Midwest Stratospheric Data Systems as the curator of this open archive. For GMC-800 files, cite Aerostratospheric / MSDS and GQ Electronics as the instrument maker.
+When using data from this repository, always cite the original data providers (primarily NOAA NCEI IGRA and related programs) in addition to acknowledging Aerostratospheric as the curator of this open archive. For GMC-800 files, cite Aerostratospheric and GQ Electronics as the instrument maker.
 
 IGRA citation example:  
 Durre, Imke; Yin, Xungang; Vose, Russell S.; Applequist, Scott; Arnfield, Jeff; Korzeniewski, Bryant; Hundermark, Bruce. (2016) Integrated Global Radiosonde Archive (IGRA), Version 2. NOAA National Centers for Environmental Information. DOI:10.7289/V5X63K0Q.
@@ -89,7 +89,7 @@ IGDR feeds the ground layer of UOGW and the radiation panel on xDataHub, our pub
 
 ## Contact
 
-Midwest Stratospheric Data Systems  
+Aerostratospheric  
 Casey, Illinois, USA  
 launchcontrol@midwestsds.com  
 https://www.midwestsds.com
